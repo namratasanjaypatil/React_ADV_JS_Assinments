@@ -1,0 +1,32 @@
+In React.js, hooks are functions that allow you to use state and other React features without writing a 
+class. Hooks were introduced in React 16.8 and have become a popular way to manage state and side effects 
+in functional components. Here is a list of commonly used hooks in React.js:
+
+
+1. useState: Used to add state to functional components. 
+
+2. useEffect: Used to perform side effects in functional components (e.g., fetching data, subscribing to 
+events). 
+
+3. useContext: Used to access a React context in functional components.
+
+4. useReducer: Used to manage complex state logic that involves multiple sub-values or actions.
+
+5. useCallback: Used to memoize functions, preventing unnecessary re-rendering of child components.
+
+6. useMemo: Used to memoize values, preventing unnecessary re-computation of expensive operations.
+
+7. useRef: Used to create a mutable reference that persists across re-renders.
+
+8. useImperativeHandle: Used to customize the instance value that's exposed to parent components when using
+`ref`.
+
+9. useLayoutEffect: Similar to `useEffect`, but runs synchronously after all DOM mutations.
+
+10. useDebugValue: Used to display a custom label for custom hooks in React DevTools.
+
+
+These are the most commonly used hooks in React.js, but there are also some additional hooks like 
+`useCallback`, `useMemo`, `useRef`, etc., that provide more specialized functionality. It's important to 
+note that hooks should only be used in functional components or other custom hooks, and not in regular 
+JavaScript functions or class components.
