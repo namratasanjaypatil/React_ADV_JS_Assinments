@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- ======================jquery============================= -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+    <!-- ======================bootstrap============================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <style>
+        @media print {
+            .btn {
+                display: none;
+            }
+
+            #qty {
+                border: none !important;
+                background-color: transparent !important;
+            }
+
+            #rate {
+                border: none !important;
+                background-color: transparent !important;
+            }
+
+            .remove-all {
+                display: none;
+            }
+
+        }
+
+        .itemImg img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        .itemName {
+            background-color: transparent !important;
+            border: none !important;
+        }
+
+        select {
+            border: none;
+            height: 40px;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+
+        .subTotal {
+            background-color: transparent;
+
+        }
+
+        .subTotal-rupee {
+            position: absolute;
+            right: 20px;
+            top: 5px;
+        }
+
+        .totalInput {
+            position: relative;
+        }
+
+        .total-rupee {
+            position: absolute;
+            right: 140px;
+            top: 5px;
+        }
+
+        .Dess {
+            background-color: rgb(125, 3, 60);
+            color: white;
+        }
+    </style>
+
+    <script>
+
+
+        function BtnDel(v) {
+
+            $(v).parent().parent().remove();
+            getTotal();
+
+        }
+
+
+        function BtnAdd() {
+
+            var v = $("#TRow").clone().appendTo("#TBody");
+            $(v).find("input").val("");
+            $(v).removeClass("d-none");
+
+        }
+
+
+        function getRate(selectElement) {
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+            var rate = selectedOption.dataset.rate;
+
+            var rateInput = selectElement.closest('tr').querySelector('input[name="rate"]');
+            rateInput.value = rate;
+
+            calc(rateInput);
+        }
+
+
+        function calc(v) {
+
+            var index = $(v).parent().parent().index();
+
+            var qty = document.getElementsByName("qty")[index].value;
+            var rate = document.getElementsByName("rate")[index].value;
+
+            var amt = qty * rate;
+            document.getElementsByName("amt")[index].value = amt;
+
+            getTotal();
+
+        }
+
+        function getTotal() {
+            var sum = 0;
+            var amts = document.getElementsByName("amt");
+
+            for (let index = 0; index < amts.length; index++) {
+                var amt = amts[index].value;
+                sum = +(sum) + +(amt);
+            }
+
+            document.getElementById("total").value = sum;
+
+        }
+
+
+        function getPrint() {
+            window.print();
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container" id="content"></div>
+
+    <div class="container">
+        <div class="col-md-7 offset-md-3 mt-5 shadow rounded-3">
+            <table class="table table-striped table-bordered">
+                <div class="text-center fs-2 py-4 rounded-2 fw-bolder Dess">Namrata's
+                    Dessert House</div>
+                <thead class="bg-light">
+                    <tr>
+                        <th class="fs-5 text-muted text-center">Food</th>
+                        <th class="fs-5 text-muted text-center">Qty</th>
+                        <th class="fs-5 text-muted text-center">Rate</th>
+                        <th class="fs-5 text-muted text-center">Sub-Total</th>
+                        <td class="fs-5 text-muted text-center remove-col"></td>
+                    </tr>
+                </thead>
+                <tbody id="TBody">
+
+                    <!-- ========================================================== -->
+
+                    <tr id="TRow" class="d-none">
+                        <td class="d-flex align-items-center gap-3">
+                            <div class="itemImg">
+                                <select name="foodlist" onchange="getRate(this)">
+                                    <option class="px-1" value>---select
+                                        Your Order---</option>
+                                    <option value data-rate="35"> Kesar
+                                        Badam Ice cream </option>
+                                    <option value data-rate="30"> Rajbhog
+                                        Ice cream </option>
+                                    <option value data-rate="35"> Roasted
+                                        Almond Ice cream </option>
+                                    <option value data-rate="30"> Mawa Malai
+                                        Ice cream </option>
+                                    <option value data-rate="25"> Winter
+                                        Cream Ice cream </option>
+                                    <option value data-rate="30"> Kaju
+                                        Anjeer Ice cream </option>
+                                    <option value data-rate="30"> American
+                                        Dry Fruits Ice cream </option>
+                                    <option value data-rate="25"> Chocolate
+                                        Chips Ice cream </option>
+                                    <option value data-rate="35"> Badam
+                                        Pista Ice cream </option>
+                                </select>
+                        </td>
+                        <td>
+                            <input id="qty" name="qty" class="form-control text-end" type="number" style="width: 80px;"
+                                onblur="calc(this)">
+                        </td>
+                        <td>
+                            <input type="text" id="rate" name="rate" class="form-control text-end" type="text" onchange
+                                style="width: 80px;">
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input id="amts" name="amt" class="form-control subTotal border-0  text-end" type="text"
+                                    style="width: 80px;" readonly>
+                                <span class="subTotal-rupee">&#8377;</span>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger remove-all" onclick="BtnDel(this)">Remove</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="col-md-4 pb-3">
+                    <div class="btn btn-group"><button class="btn Dess" id="addItem" onclick="BtnAdd()">Add
+                            item</button>
+                    </div>
+
+                </div>
+                <div class="col-md-6 px-4">
+
+                    <div class="input-group mb-3 d-flex align-items-center">
+                        <span class="pe-3 fs-5 fw-bold text-muted text-end">Total</span>
+                        <span class="input-group-text">&#8377;</span>
+                        <input type="text" class="form-control" id="total"
+                            aria-label="Dollar amount (with dot and two decimal places)">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

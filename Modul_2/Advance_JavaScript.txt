@@ -1,0 +1,83 @@
+• What is JavaScript Output method?
+Ans: In JavaScript, there are several methods that can be used to produce output or display information 
+    to the user. Here are some commonly used methods for output in JavaScript-console.log(),alert(),
+    document.write(),innerHTML,return statement.
+
+
+
+• How to use JavaScript Output method? 
+Ans: In JavaScript, there are several methods you can use to output or display information. The most common
+    methods for outputting data in JavaScript are:
+
+    -Using the console.log() method:
+
+    console.log("Hello, World!");
+
+    The console.log() method is used to display messages or values in the console of your web browser's 
+    developer tools. It's primarily used for debugging and development purposes.
+
+    -Writing to the HTML document:
+    You can write output directly to the HTML document by targeting an element and modifying its content.
+    For example, you can use the innerHTML property to modify the content of an HTML element:
+
+    <div id="output"></div>
+    var outputElement = document.getElementById("output");
+    outputElement.innerHTML = "Hello, World!";
+    This method allows you to update the content of an element on the web page itself.
+
+    -Using the alert() method:
+    The alert() method displays a popup dialog box with the specified message.
+
+    alert("Hello, World!");
+    This method is useful for simple notifications or displaying information in a modal-like window.
+
+    -Writing to the browser's document:
+    You can also write directly to the document using the document.write() method. However, note that using
+    document.write() after the page has finished loading can overwrite the entire document, so it's not 
+    commonly used in modern web development.
+
+    document.write("Hello, World!");
+
+
+• How to use JavaScript Events? Give examples.
+Ans: JavaScript events are actions or occurrences that happen within the browser, such as a button click, a
+    key press, or the page finishing loading. You can use JavaScript to respond to these events and execute
+    specific code when they occur. Here are some examples of how to use JavaScript events:
+
+	1. Button Click Event:
+
+        var button = document.getElementById("myButton");
+        button.addEventListener("click", function() {
+        alert("Button clicked!");
+        });
+
+	2. Key Press Event:
+
+        var input = document.getElementById("myInput");
+        input.addEventListener("keypress", function(event) {
+        console.log("Key pressed: " + event.key);
+        });
+
+	3. Page Load Event:
+	    window.addEventListener("load", function() {
+  	    console.log("Page loaded!");
+	    });
+
+	4. Mouseover Event:
+	    var element = document.getElementById("myElement");
+	    element.addEventListener("mouseover", function() {
+  	    element.style.backgroundColor = "red";
+	    });
+
+	5. Form Submit Event:
+	    var form = document.getElementById("myForm");
+	    form.addEventListener("submit", function(event) {
+  	    event.preventDefault();
+  	    var name = document.getElementById("nameInput").value;
+  	    console.log("Form submitted with name: " + name);
+	    });
+
+	6. Window Resize Event:
+	    window.addEventListener("resize", function() {
+ 	    console.log("Window resized");
+	    });
