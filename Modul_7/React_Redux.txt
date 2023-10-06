@@ -1,0 +1,23 @@
+• What is Redux? 
+=>   Redux was inspired by Flux but it omitted the unnecessary complexity: it does not have Dispatcher 
+    concept, has a single Store and the Action objects is received and handled directly by Store in the
+    Redux. Redux is used by ReactJS for building the user interface and to manage the application state.
+
+
+• What is Redux Thunk used for? 
+=> Redux Thunk middleware allows you to write action creators that return a function instead of an action.
+    The thunk can be used to delay the dispatch of an action, or to dispatch only if a certain condition is
+    met. The inner function receives the store methods dispatch and getState as parameters.
+
+ 
+• What is Pure Component? When to use Pure Component over Component? 
+=> It is the type of component which re-renders only when the props passed to it changes and not even if
+    its parent component re-renders or if the should Component Update()method is called. It is greatly used 
+    to enhance the performance of a web application.
+
+
+• What is the second argument that can optionally be passed to setState and what is its purpose?
+=> The second parameter to setState() is an optional callback function that will be executed once setState 
+    is completed and the component is re-rendered. ComponentDidUpdate should be used instead to apply such 
+    logic in most cases. You may directly pass an object as the first argument to setState instead of a 
+    function.
